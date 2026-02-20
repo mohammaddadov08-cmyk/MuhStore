@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MuhStore Pro • Premium Digital Experience</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    /* ===== ПРЕМИУМ ПЕРЕМЕННЫЕ ===== */
+    :root {
+      --primary: #c6a7ff;
+      --primary-glow: rgba(198, 167, 255, 0.4);
+      --secondary: #7c5cf0;
+      --accent: #ffb86b;
+      --dark: #0a0a0f;
+      --darker: #050508;
+      --light: #ffffff;
+      --gray: #2a2a35;
+      --gray-light: #3a3a45;
+      --text: #e0e0e0;
+      --text-muted: #90909a;
+      --border: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(20, 20, 30, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 30px var(--primary-glow);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--darker);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* ===== ПОТРЯСАЮЩИЙ АНИМИРОВАННЫЙ ФОН ===== */
+    .background-effects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    /* Градиентные сферы */
+    .gradient-sphere {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: floatSphere 20s infinite ease-in-out;
+    }
+
+    .sphere-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at 30% 30%, var(--primary), transparent 70%);
+      top: -200px;
+      left: -200px;
+      animation-delay: 0s;
+    }
+
+    .sphere-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle at 70% 70%, var(--secondary), transparent 70%);
+      bottom: -150px;
+      right: -150px;
+      animation-delay: -5s;
+    }
+
+    .sphere-3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at 50% 50%, var(--accent), transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -10s;
+    }
+
+    @keyframes floatSphere {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(50px, 50px) scale(1.1);
+      }
+      50% {
+        transform: translate(0, 100px) scale(0.9);
+      }
+      75% {
+        transform: translate(-50px, 50px) scale(1.05);
+      }
+    }
+
+    /* Сетка */
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(198, 167, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198, 167, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 15s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    /* Звезды */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    /* Парящие частицы */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(198, 167, 255, 0.3);
+      border-radius: 50%;
+      animation: floatParticle 8s infinite linear;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* ===== ЭФФЕКТ ПАДАЮЩИХ СНЕЖИНОК ===== */
+    .snowflakes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.6);
+      user-select: none;
+      cursor: default;
+      animation: snowfall linear infinite;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      z-index: 1;
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(20px) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
+
+    /* Разные размеры и скорости снежинок */
+    .snowflake.type-1 { font-size: 8px; animation-duration: 8s; }
+    .snowflake.type-2 { font-size: 12px; animation-duration: 10s; }
+    .snowflake.type-3 { font-size: 16px; animation-duration: 12s; }
+    .snowflake.type-4 { font-size: 20px; animation-duration: 14s; }
+    .snowflake.type-5 { font-size: 24px; animation-duration: 16s; }
+
+    /* Разные символы снежинок */
+    .snowflake i {
+      filter: drop-shadow(0 0 5px rgba(198, 167, 255, 0.3));
+    }
+
+    /* ===== ПРЕМИУМ НАВИГАЦИЯ ===== */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1400px;
+      backdrop-filter: blur(20px);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 12px 30px;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+      top: 10px;
+      background: rgba(10, 10, 15, 0.85);
+      border-color: var(--primary-glow);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 22px;
+      color: white !important;
+      letter-spacing: 1px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .navbar-brand::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 24px;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-premium {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-premium:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-premium:hover {
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .btn-premium-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      color: var(--darker);
+      font-weight: 600;
+    }
+
+    .btn-premium-primary:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: var(--darker);
+    }
+
+    /* ===== ПРЕМИУМ ПОЛЬЗОВАТЕЛЬ ===== */
+    .user-info-premium {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 4px 4px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .user-avatar-premium {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--darker);
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .user-name {
+      font-weight: 500;
+      color: white;
+    }
+
+    /* ===== ПРЕМИУМ ГЕРОЙ ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 0 30px rgba(198, 167, 255, 0.3);
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: clamp(16px, 2vw, 20px);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-item {
+      text-align: center;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px 30px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ПРЕМИУМ ТОВАРЫ ===== */
+    .products {
+      padding: 100px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .product-card-premium {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 40px 30px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .product-card-premium::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.8s;
+    }
+
+    .product-card-premium:hover::before {
+      transform: translateX(100%);
+    }
+
+    .product-card-premium:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--primary-glow);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .product-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(198, 167, 255, 0.1), rgba(124, 92, 240, 0.1));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      border: 1px solid var(--border);
+    }
+
+    .product-icon i {
+      font-size: 40px;
+    }
+
+    .product-card-premium h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .product-description {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .product-price-premium {
+      display: block;
+      margin: 25px 0;
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .product-price-premium small {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .btn-buy-premium {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--darker);
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-buy-premium::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-buy-premium:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-buy-premium:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px var(--primary-glow);
+    }
+
+    .btn-buy-premium:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== ПРЕМИУМ МОДАЛЬНЫЕ ОКНА ===== */
+    .modal-content-premium {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      color: white;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .modal-header-premium {
+      border-bottom: 1px solid var(--border);
+      padding: 25px 30px;
+    }
+
+    .modal-header-premium .modal-title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .modal-body-premium {
+      padding: 30px;
+    }
+
+    .modal-footer-premium {
+      border-top: 1px solid var(--border);
+      padding: 25px 30px;
+    }
+
+    .btn-close-premium {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .btn-close-premium:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ===== ПРЕМИУМ ФОРМЫ ===== */
+    .form-group-premium {
+      margin-bottom: 20px;
+    }
+
+    .form-label-premium {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .form-control-premium {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 15px 20px;
+      color: white;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .form-control-premium:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-glow);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .form-control-premium::placeholder {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ===== ПРЕМИУМ КОРЗИНА ===== */
+    .cart-item-premium {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .cart-item-premium:hover {
+      border-color: var(--primary);
+      background: rgba(198, 167, 255, 0.05);
+    }
+
+    .btn-remove-premium {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      color: #ff6b6b;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-remove-premium:hover {
+      border-color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+    }
+
+    .total-premium {
+      background: linear-gradient(135deg, rgba(198, 167, 255, 0.1), rgba(124, 92, 240, 0.1));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .total-premium h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .btn-pay-premium {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #00b09b, #96c93d);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-pay-premium:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 176, 155, 0.4);
+    }
+
+    /* ===== ПРЕМИУМ УВЕДОМЛЕНИЯ ===== */
+    .notification-premium {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 15px 25px;
+      color: white;
+      z-index: 9999;
+      animation: slideInPremium 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-glow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .notification-premium.success {
+      border-color: #00b09b;
+    }
+
+    .notification-premium.error {
+      border-color: #ff6b6b;
+    }
+
+    @keyframes slideInPremium {
+      from {
+        transform: translateX(100%) translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ===== ПРЕМИУМ ФУТЕР ===== */
+    .footer-premium {
+      padding: 60px 40px 30px;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .footer-premium::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ===== ПРЕМИУМ СКРОЛЛБАР ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    /* ===== ПРЕМИУМ АДАПТИВНОСТЬ ===== */
+    @media (max-width: 768px) {
+      .navbar {
+        width: 95%;
+        padding: 10px 15px;
+        border-radius: 50px;
+      }
+
+      .navbar-brand {
+        font-size: 18px;
+        padding-left: 25px;
+      }
+
+      .btn-premium {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .btn-premium span {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 20px;
+        flex-direction: column;
+      }
+
+      .products {
+        padding: 50px 20px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ПОТРЯСАЮЩИЙ АНИМИРОВАННЫЙ ФОН -->
+  <div class="background-effects">
+    <!-- Градиентные сферы -->
+    <div class="gradient-sphere sphere-1"></div>
+    <div class="gradient-sphere sphere-2"></div>
+    <div class="gradient-sphere sphere-3"></div>
+    
+    <!-- Сетка -->
+    <div class="grid-overlay"></div>
+    
+    <!-- Звезды -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Парящие частицы -->
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- ЭФФЕКТ ПАДАЮЩИХ СНЕЖИНОК -->
+  <div class="snowflakes" id="snowflakes"></div>
+
+  <!-- ПРЕМИУМ НАВИГАЦИЯ -->
+  <nav class="navbar" id="premiumNav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        MUHSTORE<span style="color: var(--primary);">.</span>
+      </a>
+      <div class="nav-buttons">
+        <!-- Блок для неавторизованного пользователя -->
+        <div id="authButtons">
+          <button class="btn-premium" onclick="openLoginModal()">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Вход</span>
+          </button>
+          <button class="btn-premium btn-premium-primary" onclick="openRegisterModal()">
+            <i class="bi bi-person-plus"></i>
+            <span>Регистрация</span>
+          </button>
+        </div>
+        
+        <!-- Блок для авторизованного пользователя -->
+        <div id="userInfo" style="display: none;">
+          <div class="user-info-premium">
+            <span class="user-name" id="userName">Пользователь</span>
+            <div class="user-avatar-premium" id="userAvatar">U</div>
+            <button class="btn-premium" onclick="logout()" title="Выйти">
+              <i class="bi bi-box-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <button class="btn-premium" onclick="openCart()">
+          <i class="bi bi-bag"></i>
+          <span>Корзина</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="btn-premium" onclick="window.open('https://t.me/tjkm04')">
+          <i class="bi bi-telegram"></i>
+          <span>Поддержка</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ПРЕМИУМ ГЕРОЙ -->
+  <section class="hero">
+    <div class="container text-center">
+      <span class="badge bg-primary mb-4" style="background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; padding: 8px 20px; border-radius: 50px; font-weight: 500; backdrop-filter: blur(10px);">
+        ⚡ PREMIUM DIGITAL STORE
+      </span>
+      <h1 data-aos="fade-up" data-aos-duration="1000">
+        Цифровые продукты<br>премиум-класса
+      </h1>
+      <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        Эксклюзивные подписки, мгновенная доставка, 24/7 поддержка
+      </p>
+      <div class="hero-stats" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="stat-item">
+          <div class="stat-number">5000+</div>
+          <div class="stat-label">Довольных клиентов</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Цифровых продуктов</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Поддержка</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕМИУМ ТОВАРЫ -->
+  <section class="products">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Популярные продукты</h2>
+        <p>Выберите подписку и начните пользоваться премиум-возможностями</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Telegram Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-telegram" style="color: #0088cc;"></i>
+            </div>
+            <h3>Telegram Premium</h3>
+            <p class="product-description">Расширенные возможности мессенджера</p>
+            <span class="product-price-premium">199 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Telegram Premium', 199)" id="buyBtn1">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Discord Nitro -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-discord" style="color: #5865F2;"></i>
+            </div>
+            <h3>Discord Nitro</h3>
+            <p class="product-description">Улучшенный опыт общения в Discord</p>
+            <span class="product-price-premium">249 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Discord Nitro', 249)" id="buyBtn2">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Spotify Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-spotify" style="color: #1DB954;"></i>
+            </div>
+            <h3>Spotify Premium</h3>
+            <p class="product-description">Музыка без рекламы и офлайн-режим</p>
+            <span class="product-price-premium">179 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Spotify Premium', 179)" id="buyBtn3">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Netflix Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-play-circle" style="color: #E50914;"></i>
+            </div>
+            <h3>Netflix Premium</h3>
+            <p class="product-description">Фильмы и сериалы в 4K качестве</p>
+            <span class="product-price-premium">399 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Netflix Premium', 399)" id="buyBtn4">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- ChatGPT Plus -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-chat-dots" style="color: #10a37f;"></i>
+            </div>
+            <h3>ChatGPT Plus</h3>
+            <p class="product-description">Доступ к GPT-4 и быстрые ответы</p>
+            <span class="product-price-premium">990 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('ChatGPT Plus', 990)" id="buyBtn5">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- YouTube Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-youtube" style="color: #FF0000;"></i>
+            </div>
+            <h3>YouTube Premium</h3>
+            <p class="product-description">Видео без рекламы и YouTube Music</p>
+            <span class="product-price-premium">299 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('YouTube Premium', 299)" id="buyBtn6">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО ВХОДА -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content-premium">
+        <div class="modal-header-premium">
+          <h5 class="modal-title">
+            <i class="bi bi-box-arrow-in-right" style="color: var(--primary);"></i> Добро пожаловать
+          </h5>
+          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <div class="modal-body-premium">
+          <form id="loginForm" onsubmit="event.preventDefault(); login();">
+            <div class="form-group-premium">
+              <label class="form-label-premium">Email</label>
+              <input type="email" class="form-control-premium" id="loginEmail" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group-premium">
+              <label class="form-label-premium">Пароль</label>
+              <input type="password" class="form-control-premium" id="loginPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-pay-premium mb-3">
+              <i class="bi bi-arrow-right-circle"></i> Войти
+            </button>
+          </form>
+          <div class="text-center">
+            <span style="color: var(--text-muted);">Нет аккаунта? </span>
+            <a class="auth-switch" onclick="switchToRegister()" style="color: var(--primary); cursor: pointer; font-weight: 600;">Создать аккаунт</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО РЕГИСТРАЦИИ -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content-premium">
+        <div class="modal-header-premium">
+          <h5 class="modal-title">
+            <i class="bi bi-person-plus" style="color: var(--primary);"></i> Создать аккаунт
+          </h5>
+          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <div class="modal-body-premium">
+          <form id="registerForm" onsubmit="event.preventDefault(); register();">
+            <div class="form-group-premium">
+              <label class="form-label-premium">Имя</label>
+              <input type="text" class="form-control-premium" id="regName" placeholder="Иван Петров" required>
+            </div>
+            <div class="form-group-premium">
+              <label class="form-label-premium">Email</label>
+              <input type="email" class="form-control-premium" id="regEmail" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group-premium">
+              <label class="form-label-premium">Пароль</label>
+              <input type="password" class="form-control-premium" id="regPassword" placeholder="••••••••" required oninput="checkPasswordStrength()">
+              <div class="password-requirements" id="passwordRequirements" style="margin-top: 10px; font-size: 12px;">
+                <div id="reqLength" style="color: var(--text-muted);">✗ Минимум 6 символов</div>
+                <div id="reqNumber" style="color: var(--text-muted);">✗ Хотя бы одна цифра</div>
+                <div id="reqLetter" style="color: var(--text-muted);">✗ Хотя бы одна буква</div>
+              </div>
+            </div>
+            <div class="form-group-premium">
+              <label class="form-label-premium">Подтверждение пароля</label>
+              <input type="password" class="form-control-premium" id="regConfirmPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-pay-premium mb-3" id="registerBtn">
+              <i class="bi bi-check2-circle"></i> Зарегистрироваться
+            </button>
+          </form>
+          <div class="text-center">
+            <span style="color: var(--text-muted);">Уже есть аккаунт? </span>
+            <a class="auth-switch" onclick="switchToLogin()" style="color: var(--primary); cursor: pointer; font-weight: 600;">Войти</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content-premium">
+        <div class="modal-header-premium">
+          <h5 class="modal-title">
+            <i class="bi bi-bag" style="color: var(--primary);"></i> Ваша корзина
+          </h5>
+          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <div class="modal-body-premium">
+          <div id="cartItems"></div>
+          <div class="total-premium mt-4">
+            <h3>Итого: <span id="totalPrice">0</span> ₽</h3>
+          </div>
+        </div>
+        <div class="modal-footer-premium">
+          <button type="button" class="btn-pay-premium" onclick="checkout()">
+            <i class="bi bi-check2-circle"></i> Оформить заказ
+          </button>
+          <div class="w-100 text-center mt-3">
+            <small style="color: var(--text-muted);">
+              Нужна помощь? 
+              <a href="https://t.me/tjkm04" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                <i class="bi bi-telegram"></i> @tjkm04
+              </a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРЕМИУМ ФУТЕР -->
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>MuhStore Pro</h4>
+          <p style="color: var(--text-muted);">Премиальные цифровые продукты с мгновенной доставкой</p>
+        </div>
+        <div class="footer-section">
+          <h4>Продукты</h4>
+          <ul>
+            <li><a href="#">Telegram Premium</a></li>
+            <li><a href="#">Discord Nitro</a></li>
+            <li><a href="#">Spotify Premium</a></li>
+            <li><a href="#">Netflix Premium</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Поддержка</h4>
+          <ul>
+            <li><a href="https://t.me/tjkm04">Telegram</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Возвраты</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Мы принимаем</h4>
+          <div style="display: flex; gap: 15px; font-size: 24px;">
+            <i class="bi bi-credit-card" style="color: var(--primary);"></i>
+            <i class="bi bi-paypal" style="color: var(--primary);"></i>
+            <i class="bi bi-cash" style="color: var(--primary);"></i>
+            <i class="bi bi-coin" style="color: var(--primary);"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MuhStore Pro. Все права защищены. Премиум цифровые продукты.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- ПРЕМИУМ СКРИПТ -->
+  <script>
+    // Инициализация AOS
+    AOS.init({
+      once: true,
+      duration: 1000,
+    });
+
+    // ===== СОЗДАНИЕ ЗВЕЗД =====
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      const starCount = 200;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.width = Math.random() * 3 + 'px';
+        star.style.height = star.style.width;
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        starsContainer.appendChild(star);
+      }
+    }
+
+    // ===== СОЗДАНИЕ ЧАСТИЦ =====
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // ===== СОЗДАНИЕ СНЕЖИНОК =====
+    function createSnowflakes() {
+      const snowflakesContainer = document.getElementById('snowflakes');
+      const snowflakeCount = 100;
+      const snowflakeSymbols = ['❄️', '❅', '❆', '✻', '✼', '✽', '✾', '✿'];
+      
+      for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake type-' + (Math.floor(Math.random() * 5) + 1);
+        
+        // Случайный символ
+        const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+        snowflake.innerHTML = `<i>${symbol}</i>`;
+        
+        // Случайная позиция
+        snowflake.style.left = Math.random() * 100 + '%';
+        snowflake.style.animationDelay = Math.random() * 16 + 's';
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        
+        // Случайный цвет
+        const hue = Math.random() * 60 + 200; // Голубовато-фиолетовые тона
+        snowflake.style.color = `hsla(${hue}, 80%, 70%, 0.8)`;
+        
+        snowflakesContainer.appendChild(snowflake);
+      }
+    }
+
+    // ===== ПРЕМИУМ ИНИЦИАЛИЗАЦИЯ =====
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+    
+    // Bootstrap модальные окна
+    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+
+    // Эффект скролла для навбара
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('premiumNav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ===== ПРЕМИУМ АВТОРИЗАЦИЯ =====
+    function updateAuthUI() {
+      const authButtons = document.getElementById('authButtons');
+      const userInfo = document.getElementById('userInfo');
+      const userName = document.getElementById('userName');
+      const userAvatar = document.getElementById('userAvatar');
+      
+      const buyButtons = document.querySelectorAll('.btn-buy-premium');
+      
+      if (currentUser) {
+        authButtons.style.display = 'none';
+        userInfo.style.display = 'block';
+        userName.textContent = currentUser.name;
+        userAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+        
+        buyButtons.forEach(btn => {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        });
+      } else {
+        authButtons.style.display = 'block';
+        userInfo.style.display = 'none';
+        
+        buyButtons.forEach(btn => {
+          btn.disabled = true;
+          btn.style.opacity = '0.5';
+          btn.title = 'Войдите чтобы покупать';
+        });
+      }
+    }
+
+    function openLoginModal() {
+      loginModal.show();
+    }
+
+    function openRegisterModal() {
+      registerModal.show();
+    }
+
+    function switchToRegister() {
+      loginModal.hide();
+      setTimeout(() => registerModal.show(), 300);
+    }
+
+    function switchToLogin() {
+      registerModal.hide();
+      setTimeout(() => loginModal.show(), 300);
+    }
+
+    function checkPasswordStrength() {
+      const password = document.getElementById('regPassword').value;
+      
+      const reqLength = document.getElementById('reqLength');
+      const reqNumber = document.getElementById('reqNumber');
+      const reqLetter = document.getElementById('reqLetter');
+      
+      if (password.length >= 6) {
+        reqLength.innerHTML = '✓ Минимум 6 символов';
+        reqLength.style.color = '#00b09b';
+      } else {
+        reqLength.innerHTML = '✗ Минимум 6 символов';
+        reqLength.style.color = 'var(--text-muted)';
+      }
+      
+      if (/\d/.test(password)) {
+        reqNumber.innerHTML = '✓ Хотя бы одна цифра';
+        reqNumber.style.color = '#00b09b';
+      } else {
+        reqNumber.innerHTML = '✗ Хотя бы одна цифра';
+        reqNumber.style.color = 'var(--text-muted)';
+      }
+      
+      if (/[a-zA-Zа-яА-Я]/.test(password)) {
+        reqLetter.innerHTML = '✓ Хотя бы одна буква';
+        reqLetter.style.color = '#00b09b';
+      } else {
+        reqLetter.innerHTML = '✗ Хотя бы одна буква';
+        reqLetter.style.color = 'var(--text-muted)';
+      }
+    }
+
+    function register() {
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+      
+      if (!name || !email || !password || !confirmPassword) {
+        showNotification('Заполните все поля', 'error');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        showNotification('Пароли не совпадают', 'error');
+        return;
+      }
+      
+      if (password.length < 6 || !/\d/.test(password) || !/[a-zA-Zа-яА-Я]/.test(password)) {
+        showNotification('Пароль не соответствует требованиям', 'error');
+        return;
+      }
+      
+      if (users.some(u => u.email === email)) {
+        showNotification('Email уже зарегистрирован', 'error');
+        return;
+      }
+      
+      const newUser = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        password: password
+      };
+      
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      showNotification('Аккаунт создан! Теперь войдите.', 'success');
+      registerModal.hide();
+      setTimeout(() => loginModal.show(), 500);
+      
+      document.getElementById('registerForm').reset();
+    }
+
+    function login() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      
+      if (!email || !password) {
+        showNotification('Заполните все поля', 'error');
+        return;
+      }
+      
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        currentUser = {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        };
+        
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        updateAuthUI();
+        showNotification(`С возвращением, ${user.name}!`, 'success');
+        loginModal.hide();
+        
+        document.getElementById('loginForm').reset();
+      } else {
+        showNotification('Неверный email или пароль', 'error');
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      cart = [];
+      updateCart();
+      updateAuthUI();
+      showNotification('Вы вышли из аккаунта', 'success');
+    }
+
+    // ===== ПРЕМИУМ КОРЗИНА =====
+    function updateCart() {
+      document.getElementById("cartCount").innerText = cart.length;
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function addToCart(name, price) {
+      if (!currentUser) {
+        showNotification('Войдите в аккаунт чтобы покупать', 'error');
+        openLoginModal();
+        return;
+      }
+      
+      cart.push({ name, price });
+      updateCart();
+      showNotification(`${name} добавлен в корзину`, 'success');
+      
+      // Анимация кнопки корзины
+      const cartBtn = document.querySelector('.btn-premium [onclick="openCart()"]');
+      if (cartBtn) {
+        cartBtn.style.transform = 'scale(1.1)';
+        setTimeout(() => cartBtn.style.transform = 'scale(1)', 200);
+      }
+    }
+
+    function removeFromCart(index) {
+      const item = cart[index];
+      cart.splice(index, 1);
+      updateCart();
+      renderCart();
+      showNotification(`${item.name} удален из корзины`, 'error');
+    }
+
+    function openCart() {
+      renderCart();
+      cartModal.show();
+    }
+
+    function renderCart() {
+      let container = document.getElementById("cartItems");
+      container.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-5" style="color: var(--text-muted);">
+            <i class="bi bi-bag-x" style="font-size: 64px;"></i>
+            <p class="mt-3">Ваша корзина пуста</p>
+          </div>
+        `;
+        document.getElementById("totalPrice").innerText = "0";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        container.innerHTML += `
+          <div class="cart-item-premium">
+            <div>
+              <i class="bi bi-gem" style="color: var(--primary);"></i>
+              <span class="ms-2 fw-500">${item.name}</span>
+            </div>
+            <div>
+              <span class="fw-bold me-3" style="color: white;">${item.price} ₽</span>
+              <button class="btn-remove-premium" onclick="removeFromCart(${index})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById("totalPrice").innerText = total;
+    }
+
+    function checkout() {
+      if (!currentUser) {
+        showNotification('Войдите в аккаунт для оформления', 'error');
+        cartModal.hide();
+        openLoginModal();
+        return;
+      }
+      
+      if (cart.length === 0) {
+        showNotification("Корзина пуста", 'error');
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      const itemsList = cart.map(item => item.name).join(', ');
+      
+      const message = encodeURIComponent(
+        `🛒 *НОВЫЙ ЗАКАЗ*\n\n` +
+        `👤 Клиент: ${currentUser.name}\n` +
+        `📧 Email: ${currentUser.email}\n` +
+        `📦 Товары: ${itemsList}\n` +
+        `💰 Сумма: ${total} ₽\n` +
+        `🕐 Время: ${new Date().toLocaleString('ru-RU')}`
+      );
+      
+      window.open(`https://t.me/tjkm04?text=${message}`);
+      
+      showNotification("Заказ оформлен! Перенаправляем в Telegram...", 'success', 5000);
+      
+      cart = [];
+      updateCart();
+      cartModal.hide();
+    }
+
+    // ===== ПРЕМИУМ УВЕДОМЛЕНИЯ =====
+    function showNotification(message, type = 'success', duration = 3000) {
+      const notification = document.createElement('div');
+      notification.className = `notification-premium ${type}`;
+      
+      const icon = type === 'success' ? 'bi-check2-circle' : 'bi-exclamation-circle';
+      
+      notification.innerHTML = `
+        <i class="bi ${icon}" style="font-size: 20px;"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideInPremium 0.4s reverse';
+        setTimeout(() => notification.remove(), 400);
+      }, duration);
+    }
+
+    // ===== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Создаем фоновые эффекты
+      createStars();
+      createParticles();
+      createSnowflakes();
+      
+      updateAuthUI();
+      updateCart();
+      
+      if (users.length === 0) {
+        users.push({
+          id: 1,
+          name: 'Тестовый Пользователь',
+          email: 'test@test.com',
+          password: 'test123'
+        });
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+    });
+  </script>
+</body>
+</html>
