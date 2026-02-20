@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MuhStore Pro • Premium Digital Experience</title>
   
   <!-- Bootstrap CSS -->
@@ -13,6 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   
   <style>
     /* ===== ПРЕМИУМ ПЕРЕМЕННЫЕ ===== */
@@ -48,215 +50,6 @@
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
-      -webkit-tap-highlight-color: transparent;
-      padding-top: 80px;
-    }
-
-    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 70px;
-      }
-      
-      .navbar {
-        width: 96%;
-        padding: 8px 12px;
-        border-radius: 40px;
-        top: 10px;
-      }
-
-      .navbar-brand {
-        font-size: 16px;
-        padding-left: 20px;
-      }
-
-      .navbar-brand::before {
-        font-size: 18px;
-      }
-
-      .nav-buttons {
-        gap: 4px;
-      }
-
-      .btn-premium {
-        padding: 6px 10px;
-        font-size: 11px;
-      }
-
-      .btn-premium span {
-        display: none;
-      }
-
-      .btn-premium i {
-        font-size: 14px;
-        margin: 0;
-      }
-
-      .user-info-premium {
-        padding: 2px 2px 2px 8px;
-        gap: 6px;
-      }
-
-      .user-avatar-premium {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
-      }
-
-      .user-name {
-        font-size: 12px;
-        max-width: 60px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .hero {
-        padding: 60px 15px 40px;
-        min-height: auto;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .hero p {
-        font-size: 14px;
-      }
-
-      .hero-stats {
-        gap: 10px;
-        margin-top: 30px;
-      }
-
-      .stat-item {
-        padding: 12px 15px;
-      }
-
-      .stat-number {
-        font-size: 20px;
-      }
-
-      .stat-label {
-        font-size: 10px;
-      }
-
-      .products {
-        padding: 40px 15px;
-      }
-
-      .section-title h2 {
-        font-size: 28px;
-      }
-
-      .section-title p {
-        font-size: 14px;
-      }
-
-      .product-card-premium {
-        padding: 25px 20px;
-      }
-
-      .product-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 15px;
-      }
-
-      .product-icon i {
-        font-size: 30px;
-      }
-
-      .product-card-premium h3 {
-        font-size: 18px;
-      }
-
-      .product-description {
-        font-size: 12px;
-      }
-
-      .product-price-premium {
-        font-size: 24px;
-        margin: 15px 0;
-      }
-
-      .btn-buy-premium {
-        padding: 12px;
-        font-size: 14px;
-      }
-
-      /* Модальные окна на мобильных */
-      .modal-dialog {
-        margin: 10px;
-        max-width: calc(100% - 20px);
-      }
-
-      .modal-content-premium {
-        border-radius: 25px;
-      }
-
-      .modal-header-premium {
-        padding: 15px 20px;
-      }
-
-      .modal-header-premium .modal-title {
-        font-size: 18px;
-      }
-
-      .modal-body-premium {
-        padding: 20px;
-      }
-
-      .form-control-premium {
-        padding: 12px 15px;
-        font-size: 14px;
-        border-radius: 12px;
-      }
-
-      .btn-pay-premium {
-        padding: 12px;
-        font-size: 14px;
-      }
-
-      .btn-close-premium {
-        width: 30px;
-        height: 30px;
-      }
-
-      /* Убираем задержку при нажатии */
-      * {
-        touch-action: manipulation;
-      }
-
-      /* Увеличиваем область нажатия */
-      button, .btn-premium, .btn-buy-premium, .btn-pay-premium, .btn-remove-premium {
-        min-height: 44px;
-        min-width: 44px;
-      }
-
-      /* Счетчик корзины */
-      .cart-count {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: var(--primary);
-        color: var(--darker);
-        border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        font-size: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .footer-premium {
-        padding: 40px 20px 20px;
-      }
-
-      .footer-content {
-        gap: 25px;
-      }
     }
 
     /* ===== ПОТРЯСАЮЩИЙ АНИМИРОВАННЫЙ ФОН ===== */
@@ -439,12 +232,14 @@
       }
     }
 
+    /* Разные размеры и скорости снежинок */
     .snowflake.type-1 { font-size: 8px; animation-duration: 8s; }
     .snowflake.type-2 { font-size: 12px; animation-duration: 10s; }
     .snowflake.type-3 { font-size: 16px; animation-duration: 12s; }
     .snowflake.type-4 { font-size: 20px; animation-duration: 14s; }
     .snowflake.type-5 { font-size: 24px; animation-duration: 16s; }
 
+    /* Разные символы снежинок */
     .snowflake i {
       filter: drop-shadow(0 0 5px rgba(198, 167, 255, 0.3));
     }
@@ -458,7 +253,6 @@
       width: 90%;
       max-width: 1400px;
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 100px;
@@ -502,17 +296,6 @@
       display: flex;
       gap: 8px;
       align-items: center;
-      position: relative;
-    }
-
-    .cart-count {
-      background: var(--primary);
-      color: var(--darker);
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-left: 5px;
     }
 
     .btn-premium {
@@ -531,7 +314,6 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      min-height: 44px;
     }
 
     .btn-premium::before {
@@ -647,7 +429,6 @@
     .stat-item {
       text-align: center;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.03);
       padding: 20px 30px;
       border-radius: 20px;
@@ -705,7 +486,6 @@
     .product-card-premium {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 30px;
       padding: 40px 30px;
@@ -791,7 +571,6 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      min-height: 44px;
     }
 
     .btn-buy-premium::before {
@@ -825,60 +604,46 @@
     }
 
     /* ===== ПРЕМИУМ МОДАЛЬНЫЕ ОКНА ===== */
-    .modal-content-premium {
+    .modal-content {
       background: var(--glass-bg);
       backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
       border: 1px solid var(--glass-border);
       border-radius: 30px;
       color: white;
       box-shadow: var(--shadow-glow);
     }
 
-    .modal-header-premium {
+    .modal-header {
       border-bottom: 1px solid var(--border);
       padding: 25px 30px;
     }
 
-    .modal-header-premium .modal-title {
+    .modal-header .modal-title {
       font-size: 24px;
       font-weight: 600;
+      color: white;
     }
 
-    .modal-body-premium {
+    .modal-body {
       padding: 30px;
     }
 
-    .modal-footer-premium {
+    .modal-footer {
       border-top: 1px solid var(--border);
       padding: 25px 30px;
     }
 
-    .btn-close-premium {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-close-premium:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+    .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+      opacity: 0.8;
     }
 
     /* ===== ПРЕМИУМ ФОРМЫ ===== */
-    .form-group-premium {
+    .form-group {
       margin-bottom: 20px;
     }
 
-    .form-label-premium {
+    .form-label {
       color: var(--text-muted);
       font-size: 14px;
       font-weight: 500;
@@ -886,7 +651,7 @@
       display: block;
     }
 
-    .form-control-premium {
+    .form-control {
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--border);
       border-radius: 15px;
@@ -895,23 +660,22 @@
       font-size: 16px;
       width: 100%;
       transition: all 0.3s ease;
-      -webkit-appearance: none;
-      appearance: none;
     }
 
-    .form-control-premium:focus {
+    .form-control:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px var(--primary-glow);
       background: rgba(0, 0, 0, 0.5);
+      color: white;
     }
 
-    .form-control-premium::placeholder {
+    .form-control::placeholder {
       color: rgba(255, 255, 255, 0.2);
     }
 
     /* ===== ПРЕМИУМ КОРЗИНА ===== */
-    .cart-item-premium {
+    .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -923,12 +687,12 @@
       transition: all 0.3s ease;
     }
 
-    .cart-item-premium:hover {
+    .cart-item:hover {
       border-color: var(--primary);
       background: rgba(198, 167, 255, 0.05);
     }
 
-    .btn-remove-premium {
+    .btn-remove {
       background: none;
       border: 1px solid var(--border);
       border-radius: 50%;
@@ -940,11 +704,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 44px;
-      min-height: 44px;
     }
 
-    .btn-remove-premium:hover {
+    .btn-remove:hover {
       border-color: #ff6b6b;
       background: rgba(255, 107, 107, 0.1);
     }
@@ -961,9 +723,10 @@
       font-size: 32px;
       font-weight: 700;
       margin: 0;
+      color: white;
     }
 
-    .btn-pay-premium {
+    .btn-pay {
       width: 100%;
       padding: 15px;
       border: none;
@@ -974,12 +737,45 @@
       font-size: 16px;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-height: 44px;
     }
 
-    .btn-pay-premium:hover {
+    .btn-pay:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(0, 176, 155, 0.4);
+    }
+
+    /* ===== КНОПКА GOOGLE ===== */
+    .g_id_signin {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .btn-google {
+      background: white;
+      color: #444;
+      border: 1px solid #ddd;
+      width: 100%;
+      padding: 12px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-google:hover {
+      background: #f5f5f5;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-google img {
+      width: 20px;
+      height: 20px;
     }
 
     /* ===== ПРЕМИУМ УВЕДОМЛЕНИЯ ===== */
@@ -989,7 +785,6 @@
       right: 30px;
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 15px 25px;
@@ -1097,6 +892,55 @@
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(135deg, var(--secondary), var(--primary));
     }
+
+    /* ===== ПРЕМИУМ АДАПТИВНОСТЬ ===== */
+    @media (max-width: 768px) {
+      .navbar {
+        width: 95%;
+        padding: 10px 15px;
+        border-radius: 50px;
+      }
+
+      .navbar-brand {
+        font-size: 18px;
+        padding-left: 25px;
+      }
+
+      .btn-premium {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .btn-premium span {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 20px;
+        flex-direction: column;
+      }
+
+      .products {
+        padding: 50px 20px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-dialog {
+        margin: 10px;
+      }
+
+      .form-control {
+        font-size: 16px;
+        padding: 12px 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1151,7 +995,7 @@
           </div>
         </div>
         
-        <button class="btn-premium position-relative" onclick="openCart()">
+        <button class="btn-premium" onclick="openCart()">
           <i class="bi bi-bag"></i>
           <span>Корзина</span>
           <span class="cart-count" id="cartCount">0</span>
@@ -1178,11 +1022,11 @@
       </p>
       <div class="hero-stats" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
         <div class="stat-item">
-          <div class="stat-number" id="clientCount">5000+</div>
+          <div class="stat-number">5000+</div>
           <div class="stat-label">Довольных клиентов</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" id="productCount">15+</div>
+          <div class="stat-number">15+</div>
           <div class="stat-label">Цифровых продуктов</div>
         </div>
         <div class="stat-item">
@@ -1201,8 +1045,96 @@
         <p>Выберите подписку и начните пользоваться премиум-возможностями</p>
       </div>
       
-      <div class="row g-4" id="productsList">
-        <!-- Товары будут загружаться через JS -->
+      <div class="row g-4">
+        <!-- Telegram Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-telegram" style="color: #0088cc;"></i>
+            </div>
+            <h3>Telegram Premium</h3>
+            <p class="product-description">Расширенные возможности мессенджера</p>
+            <span class="product-price-premium">199 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Telegram Premium', 199)" id="buyBtn1">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Discord Nitro -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-discord" style="color: #5865F2;"></i>
+            </div>
+            <h3>Discord Nitro</h3>
+            <p class="product-description">Улучшенный опыт общения в Discord</p>
+            <span class="product-price-premium">249 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Discord Nitro', 249)" id="buyBtn2">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Spotify Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-spotify" style="color: #1DB954;"></i>
+            </div>
+            <h3>Spotify Premium</h3>
+            <p class="product-description">Музыка без рекламы и офлайн-режим</p>
+            <span class="product-price-premium">179 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Spotify Premium', 179)" id="buyBtn3">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Netflix Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-play-circle" style="color: #E50914;"></i>
+            </div>
+            <h3>Netflix Premium</h3>
+            <p class="product-description">Фильмы и сериалы в 4K качестве</p>
+            <span class="product-price-premium">399 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('Netflix Premium', 399)" id="buyBtn4">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- ChatGPT Plus -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-chat-dots" style="color: #10a37f;"></i>
+            </div>
+            <h3>ChatGPT Plus</h3>
+            <p class="product-description">Доступ к GPT-4 и быстрые ответы</p>
+            <span class="product-price-premium">990 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('ChatGPT Plus', 990)" id="buyBtn5">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- YouTube Premium -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="product-card-premium">
+            <div class="product-icon">
+              <i class="bi bi-youtube" style="color: #FF0000;"></i>
+            </div>
+            <h3>YouTube Premium</h3>
+            <p class="product-description">Видео без рекламы и YouTube Music</p>
+            <span class="product-price-premium">299 ₽ <small>/мес</small></span>
+            <button class="btn-buy-premium" onclick="addToCart('YouTube Premium', 299)" id="buyBtn6">
+              <i class="bi bi-cart-plus"></i> Добавить в корзину
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1210,30 +1142,39 @@
   <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО ВХОДА -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content-premium">
-        <div class="modal-header-premium">
+      <div class="modal-content">
+        <div class="modal-header">
           <h5 class="modal-title">
             <i class="bi bi-box-arrow-in-right" style="color: var(--primary);"></i> Добро пожаловать
           </h5>
-          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
-            <i class="bi bi-x"></i>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body-premium">
+        <div class="modal-body">
           <form id="loginForm" onsubmit="event.preventDefault(); login();">
-            <div class="form-group-premium">
-              <label class="form-label-premium">Email</label>
-              <input type="email" class="form-control-premium" id="loginEmail" placeholder="your@email.com" inputmode="email" required>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="loginEmail" placeholder="your@email.com" required>
             </div>
-            <div class="form-group-premium">
-              <label class="form-label-premium">Пароль</label>
-              <input type="password" class="form-control-premium" id="loginPassword" placeholder="••••••••" inputmode="text" required>
+            <div class="form-group">
+              <label class="form-label">Пароль</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-pay-premium mb-3">
+            <button type="submit" class="btn-pay mb-3">
               <i class="bi bi-arrow-right-circle"></i> Войти
             </button>
           </form>
-          <div class="text-center">
+          
+          <div class="text-center mb-3">
+            <span style="color: var(--text-muted);">или</span>
+          </div>
+
+          <!-- Кнопка входа через Google -->
+          <button class="btn-google" onclick="handleGoogleLogin()">
+            <img src="https://www.google.com/favicon.ico" alt="Google">
+            Войти через Google
+          </button>
+
+          <div class="text-center mt-3">
             <span style="color: var(--text-muted);">Нет аккаунта? </span>
             <a class="auth-switch" onclick="switchToRegister()" style="color: var(--primary); cursor: pointer; font-weight: 600;">Создать аккаунт</a>
           </div>
@@ -1245,43 +1186,47 @@
   <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО РЕГИСТРАЦИИ -->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content-premium">
-        <div class="modal-header-premium">
+      <div class="modal-content">
+        <div class="modal-header">
           <h5 class="modal-title">
             <i class="bi bi-person-plus" style="color: var(--primary);"></i> Создать аккаунт
           </h5>
-          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
-            <i class="bi bi-x"></i>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body-premium">
+        <div class="modal-body">
           <form id="registerForm" onsubmit="event.preventDefault(); register();">
-            <div class="form-group-premium">
-              <label class="form-label-premium">Имя</label>
-              <input type="text" class="form-control-premium" id="regName" placeholder="Иван Петров" inputmode="text" required>
+            <div class="form-group">
+              <label class="form-label">Имя</label>
+              <input type="text" class="form-control" id="regName" placeholder="Иван Петров" required>
             </div>
-            <div class="form-group-premium">
-              <label class="form-label-premium">Email</label>
-              <input type="email" class="form-control-premium" id="regEmail" placeholder="your@email.com" inputmode="email" required>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="regEmail" placeholder="your@email.com" required>
             </div>
-            <div class="form-group-premium">
-              <label class="form-label-premium">Пароль</label>
-              <input type="password" class="form-control-premium" id="regPassword" placeholder="••••••••" inputmode="text" required oninput="checkPasswordStrength()">
-              <div class="password-requirements" id="passwordRequirements" style="margin-top: 10px; font-size: 12px;">
-                <div id="reqLength" style="color: var(--text-muted);">✗ Минимум 6 символов</div>
-                <div id="reqNumber" style="color: var(--text-muted);">✗ Хотя бы одна цифра</div>
-                <div id="reqLetter" style="color: var(--text-muted);">✗ Хотя бы одна буква</div>
-              </div>
+            <div class="form-group">
+              <label class="form-label">Пароль</label>
+              <input type="password" class="form-control" id="regPassword" placeholder="••••••••" required>
             </div>
-            <div class="form-group-premium">
-              <label class="form-label-premium">Подтверждение пароля</label>
-              <input type="password" class="form-control-premium" id="regConfirmPassword" placeholder="••••••••" inputmode="text" required>
+            <div class="form-group">
+              <label class="form-label">Подтверждение пароля</label>
+              <input type="password" class="form-control" id="regConfirmPassword" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-pay-premium mb-3" id="registerBtn">
+            <button type="submit" class="btn-pay mb-3" id="registerBtn">
               <i class="bi bi-check2-circle"></i> Зарегистрироваться
             </button>
           </form>
-          <div class="text-center">
+
+          <div class="text-center mb-3">
+            <span style="color: var(--text-muted);">или</span>
+          </div>
+
+          <!-- Кнопка регистрации через Google -->
+          <button class="btn-google" onclick="handleGoogleRegister()">
+            <img src="https://www.google.com/favicon.ico" alt="Google">
+            Регистрация через Google
+          </button>
+
+          <div class="text-center mt-3">
             <span style="color: var(--text-muted);">Уже есть аккаунт? </span>
             <a class="auth-switch" onclick="switchToLogin()" style="color: var(--primary); cursor: pointer; font-weight: 600;">Войти</a>
           </div>
@@ -1293,23 +1238,21 @@
   <!-- ПРЕМИУМ МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
   <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content-premium">
-        <div class="modal-header-premium">
+      <div class="modal-content">
+        <div class="modal-header">
           <h5 class="modal-title">
             <i class="bi bi-bag" style="color: var(--primary);"></i> Ваша корзина
           </h5>
-          <button type="button" class="btn-close-premium" data-bs-dismiss="modal">
-            <i class="bi bi-x"></i>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body-premium">
+        <div class="modal-body">
           <div id="cartItems"></div>
           <div class="total-premium mt-4">
             <h3>Итого: <span id="totalPrice">0</span> ₽</h3>
           </div>
         </div>
-        <div class="modal-footer-premium">
-          <button type="button" class="btn-pay-premium" onclick="checkout()">
+        <div class="modal-footer">
+          <button type="button" class="btn-pay" onclick="checkout()">
             <i class="bi bi-check2-circle"></i> Оформить заказ
           </button>
           <div class="w-100 text-center mt-3">
@@ -1353,7 +1296,7 @@
         </div>
         <div class="footer-section">
           <h4>Мы принимаем</h4>
-          <div style="display: flex; gap: 15px; font-size: 24px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 15px; font-size: 24px;">
             <i class="bi bi-credit-card" style="color: var(--primary);"></i>
             <i class="bi bi-paypal" style="color: var(--primary);"></i>
             <i class="bi bi-cash" style="color: var(--primary);"></i>
@@ -1432,62 +1375,17 @@
         snowflake.style.opacity = Math.random() * 0.5 + 0.3;
         
         // Случайный цвет
-        const hue = Math.random() * 60 + 200;
+        const hue = Math.random() * 60 + 200; // Голубовато-фиолетовые тона
         snowflake.style.color = `hsla(${hue}, 80%, 70%, 0.8)`;
         
         snowflakesContainer.appendChild(snowflake);
       }
     }
 
-    // ===== БАЗА ДАННЫХ (localStorage) =====
+    // ===== ПРЕМИУМ ИНИЦИАЛИЗАЦИЯ =====
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
-    
-    // Товары
-    const products = [
-      { name: 'Telegram Premium', price: 199, icon: 'bi-telegram', color: '#0088cc' },
-      { name: 'Discord Nitro', price: 249, icon: 'bi-discord', color: '#5865F2' },
-      { name: 'Spotify Premium', price: 179, icon: 'bi-spotify', color: '#1DB954' },
-      { name: 'Netflix Premium', price: 399, icon: 'bi-play-circle', color: '#E50914' },
-      { name: 'ChatGPT Plus', price: 990, icon: 'bi-chat-dots', color: '#10a37f' },
-      { name: 'YouTube Premium', price: 299, icon: 'bi-youtube', color: '#FF0000' }
-    ];
-
-    // Загрузка товаров
-    function loadProducts() {
-      const productsList = document.getElementById('productsList');
-      productsList.innerHTML = '';
-      
-      products.forEach((product, index) => {
-        const col = document.createElement('div');
-        col.className = 'col-lg-4 col-md-6';
-        col.setAttribute('data-aos', 'fade-up');
-        col.setAttribute('data-aos-delay', (index + 1) * 100);
-        
-        col.innerHTML = `
-          <div class="product-card-premium">
-            <div class="product-icon">
-              <i class="bi ${product.icon}" style="color: ${product.color};"></i>
-            </div>
-            <h3>${product.name}</h3>
-            <p class="product-description">Премиум подписка с эксклюзивными возможностями</p>
-            <span class="product-price-premium">${product.price} ₽ <small>/мес</small></span>
-            <button class="btn-buy-premium" onclick="addToCart('${product.name}', ${product.price})">
-              <i class="bi bi-cart-plus"></i> Добавить в корзину
-            </button>
-          </div>
-        `;
-        productsList.appendChild(col);
-      });
-      
-      document.getElementById('productCount').innerText = products.length + '+';
-    }
-
-    // Bootstrap модальные окна
-    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-    const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
-    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
 
     // Эффект скролла для навбара
     window.addEventListener('scroll', function() {
@@ -1518,8 +1416,6 @@
           btn.disabled = false;
           btn.style.opacity = '1';
         });
-        
-        document.getElementById('clientCount').innerText = users.length + '+';
       } else {
         authButtons.style.display = 'block';
         userInfo.style.display = 'none';
@@ -1533,55 +1429,44 @@
     }
 
     function openLoginModal() {
-      loginModal.show();
+      const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+      modal.show();
     }
 
     function openRegisterModal() {
-      registerModal.show();
+      const modal = new bootstrap.Modal(document.getElementById('registerModal'));
+      modal.show();
     }
 
     function switchToRegister() {
-      loginModal.hide();
-      setTimeout(() => registerModal.show(), 300);
+      const loginModalEl = document.getElementById('loginModal');
+      const registerModalEl = document.getElementById('registerModal');
+      const loginModal = bootstrap.Modal.getInstance(loginModalEl);
+      const registerModal = new bootstrap.Modal(registerModalEl);
+      
+      if (loginModal) {
+        loginModal.hide();
+      }
+      setTimeout(() => {
+        registerModal.show();
+      }, 300);
     }
 
     function switchToLogin() {
-      registerModal.hide();
-      setTimeout(() => loginModal.show(), 300);
+      const registerModalEl = document.getElementById('registerModal');
+      const loginModalEl = document.getElementById('loginModal');
+      const registerModal = bootstrap.Modal.getInstance(registerModalEl);
+      const loginModal = new bootstrap.Modal(loginModalEl);
+      
+      if (registerModal) {
+        registerModal.hide();
+      }
+      setTimeout(() => {
+        loginModal.show();
+      }, 300);
     }
 
-    function checkPasswordStrength() {
-      const password = document.getElementById('regPassword').value;
-      
-      const reqLength = document.getElementById('reqLength');
-      const reqNumber = document.getElementById('reqNumber');
-      const reqLetter = document.getElementById('reqLetter');
-      
-      if (password.length >= 6) {
-        reqLength.innerHTML = '✓ Минимум 6 символов';
-        reqLength.style.color = '#00b09b';
-      } else {
-        reqLength.innerHTML = '✗ Минимум 6 символов';
-        reqLength.style.color = 'var(--text-muted)';
-      }
-      
-      if (/\d/.test(password)) {
-        reqNumber.innerHTML = '✓ Хотя бы одна цифра';
-        reqNumber.style.color = '#00b09b';
-      } else {
-        reqNumber.innerHTML = '✗ Хотя бы одна цифра';
-        reqNumber.style.color = 'var(--text-muted)';
-      }
-      
-      if (/[a-zA-Zа-яА-Я]/.test(password)) {
-        reqLetter.innerHTML = '✓ Хотя бы одна буква';
-        reqLetter.style.color = '#00b09b';
-      } else {
-        reqLetter.innerHTML = '✗ Хотя бы одна буква';
-        reqLetter.style.color = 'var(--text-muted)';
-      }
-    }
-
+    // ===== ОБЫЧНАЯ РЕГИСТРАЦИЯ =====
     function register() {
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
@@ -1598,8 +1483,8 @@
         return;
       }
       
-      if (password.length < 6 || !/\d/.test(password) || !/[a-zA-Zа-яА-Я]/.test(password)) {
-        showNotification('Пароль не соответствует требованиям', 'error');
+      if (password.length < 6) {
+        showNotification('Пароль должен быть минимум 6 символов', 'error');
         return;
       }
       
@@ -1619,12 +1504,85 @@
       localStorage.setItem('users', JSON.stringify(users));
       
       showNotification('Аккаунт создан! Теперь войдите.', 'success');
+      
+      const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
       registerModal.hide();
-      setTimeout(() => loginModal.show(), 500);
+      
+      setTimeout(() => {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        loginModal.show();
+      }, 500);
       
       document.getElementById('registerForm').reset();
     }
 
+    // ===== ВХОД ЧЕРЕЗ GOOGLE =====
+    function handleGoogleLogin() {
+      // Имитация входа через Google
+      const googleUser = {
+        id: Date.now(),
+        name: 'Google User',
+        email: 'google.user@gmail.com',
+        googleId: '123456789'
+      };
+      
+      currentUser = {
+        id: googleUser.id,
+        name: googleUser.name,
+        email: googleUser.email
+      };
+      
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      
+      // Добавляем пользователя в базу если его там нет
+      if (!users.some(u => u.email === googleUser.email)) {
+        users.push(googleUser);
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+      
+      updateAuthUI();
+      
+      const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+      if (loginModal) loginModal.hide();
+      
+      showNotification(`Добро пожаловать, ${googleUser.name}!`, 'success');
+    }
+
+    // ===== РЕГИСТРАЦИЯ ЧЕРЕЗ GOOGLE =====
+    function handleGoogleRegister() {
+      // Имитация регистрации через Google
+      const googleUser = {
+        id: Date.now(),
+        name: 'Google User',
+        email: 'google.user@gmail.com',
+        googleId: '123456789'
+      };
+      
+      if (users.some(u => u.email === googleUser.email)) {
+        showNotification('Этот Google аккаунт уже зарегистрирован', 'error');
+        return;
+      }
+      
+      users.push(googleUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      currentUser = {
+        id: googleUser.id,
+        name: googleUser.name,
+        email: googleUser.email
+      };
+      
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      
+      updateAuthUI();
+      
+      const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+      if (registerModal) registerModal.hide();
+      
+      showNotification(`Добро пожаловать, ${googleUser.name}!`, 'success');
+    }
+
+    // ===== ОБЫЧНЫЙ ВХОД =====
     function login() {
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
@@ -1646,6 +1604,8 @@
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         updateAuthUI();
         showNotification(`С возвращением, ${user.name}!`, 'success');
+        
+        const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
         loginModal.hide();
         
         document.getElementById('loginForm').reset();
@@ -1698,6 +1658,7 @@
 
     function openCart() {
       renderCart();
+      const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
       cartModal.show();
     }
 
@@ -1720,14 +1681,14 @@
       cart.forEach((item, index) => {
         total += item.price;
         container.innerHTML += `
-          <div class="cart-item-premium">
+          <div class="cart-item">
             <div>
               <i class="bi bi-gem" style="color: var(--primary);"></i>
               <span class="ms-2 fw-500">${item.name}</span>
             </div>
             <div>
               <span class="fw-bold me-3" style="color: white;">${item.price} ₽</span>
-              <button class="btn-remove-premium" onclick="removeFromCart(${index})">
+              <button class="btn-remove" onclick="removeFromCart(${index})">
                 <i class="bi bi-trash"></i>
               </button>
             </div>
@@ -1741,7 +1702,10 @@
     function checkout() {
       if (!currentUser) {
         showNotification('Войдите в аккаунт для оформления', 'error');
-        cartModal.hide();
+        
+        const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+        if (cartModal) cartModal.hide();
+        
         openLoginModal();
         return;
       }
@@ -1769,7 +1733,9 @@
       
       cart = [];
       updateCart();
-      cartModal.hide();
+      
+      const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+      if (cartModal) cartModal.hide();
     }
 
     // ===== ПРЕМИУМ УВЕДОМЛЕНИЯ =====
@@ -1799,9 +1765,6 @@
       createParticles();
       createSnowflakes();
       
-      // Загружаем товары
-      loadProducts();
-      
       updateAuthUI();
       updateCart();
       
@@ -1814,16 +1777,7 @@
         });
         localStorage.setItem('users', JSON.stringify(users));
       }
-      
-      document.getElementById('clientCount').innerText = users.length + '+';
     });
-
-    // Запрещаем зум при двойном тапе на мобильных
-    document.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
   </script>
 </body>
 </html>
