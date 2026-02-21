@@ -9,8 +9,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap');
 
         body {
             background: linear-gradient(135deg, #0f0c1f 0%, #1a1730 100%);
@@ -30,7 +32,7 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.1;
             font-size: 24px;
             color: #a78bfa;
             overflow: hidden;
@@ -38,7 +40,7 @@
 
         .decor-symbols span {
             position: absolute;
-            animation: float 10s infinite linear;
+            animation: float 12s infinite ease-in-out;
             white-space: nowrap;
         }
 
@@ -57,21 +59,21 @@
         .snowflakes span {
             position: absolute;
             color: #ffffff;
-            opacity: 0.6;
+            opacity: 0.3;
             font-size: 1.5rem;
             user-select: none;
             animation: snowfall linear infinite;
         }
 
         @keyframes snowfall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0.1; }
         }
 
         @keyframes float {
             0% { transform: translateY(-10%) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.5; }
             100% { transform: translateY(110%) rotate(360deg); opacity: 0; }
         }
 
@@ -87,12 +89,13 @@
         .header {
             text-align: center;
             margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
         }
 
         .header h1 {
             font-size: 3rem;
             font-weight: 800;
-            background: linear-gradient(to right, #c4b5fd, #a78bfa, #8b5cf6);
+            background: linear-gradient(135deg, #c4b5fd, #a78bfa, #8b5cf6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -105,11 +108,12 @@
             display: block;
             font-size: 2rem;
             font-weight: 400;
-            background: linear-gradient(to right, #e0e7ff, #c7d2fe);
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-top: 0.5rem;
+            letter-spacing: 1px;
         }
 
         .header p {
@@ -117,6 +121,26 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 1rem auto 0;
+            position: relative;
+            display: inline-block;
+            padding: 0 1rem;
+        }
+
+        .header p::before,
+        .header p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+        }
+
+        .header p::before {
+            left: -30px;
+        }
+        .header p::after {
+            right: -30px;
         }
 
         /* Статистика */
@@ -130,6 +154,20 @@
 
         .stat-item {
             text-align: center;
+            animation: fadeInUp 0.6s ease-out backwards;
+            animation-delay: calc(0.1s * var(--i, 1));
+            position: relative;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(168, 139, 250, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #a78bfa;
         }
 
         .stat-number {
@@ -160,8 +198,9 @@
             display: block;
             width: 100px;
             height: 3px;
-            background: linear-gradient(to right, transparent, #a78bfa, transparent);
+            background: linear-gradient(90deg, transparent, #a78bfa, #8b5cf6, #a78bfa, transparent);
             margin: 0.5rem auto 0;
+            border-radius: 2px;
         }
 
         /* Сетка продуктов */
@@ -179,11 +218,14 @@
             border: 1px solid rgba(168, 139, 250, 0.2);
             border-radius: 24px;
             padding: 1.8rem 1.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.5s ease-out backwards;
+            animation-delay: calc(0.05s * var(--i, 1));
         }
 
         .product-card::before {
@@ -196,12 +238,13 @@
             background: linear-gradient(90deg, #a78bfa, #8b5cf6);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            transform-origin: left;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: #a78bfa;
-            box-shadow: 0 20px 30px -15px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 15px 25px -12px rgba(139, 92, 246, 0.4);
         }
 
         .product-card:hover::before {
@@ -219,6 +262,11 @@
             justify-content: center;
             border-radius: 18px;
             border: 1px solid rgba(168, 139, 250, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.05) rotate(2deg);
         }
 
         .product-name {
@@ -230,7 +278,7 @@
 
         .product-description {
             color: #9ca3af;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
             flex-grow: 1;
         }
@@ -259,11 +307,16 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: auto;
+            box-shadow: 0 4px 10px -3px #6d28d9;
         }
 
         .product-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px -8px #8b5cf6;
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px -4px #8b5cf6;
+        }
+
+        .product-button:active {
+            transform: scale(0.98);
         }
 
         /* Стиль для аксессуаров */
@@ -279,6 +332,188 @@
             border-radius: 50px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2);
+        }
+
+        /* ===== Новый блок отзывов ===== */
+        .reviews-container {
+            margin: 3rem 0;
+        }
+
+        /* Список отзывов */
+        .reviews-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(168, 139, 250, 0.15);
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            border-color: #a78bfa;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #a78bfa, #6d28d9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+        }
+
+        .review-author h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-rating {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-style: italic;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(168, 139, 250, 0.3);
+        }
+
+        /* Форма добавления отзыва */
+        .review-form {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(168, 139, 250, 0.2);
+            border-radius: 32px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .review-form h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #e0e7ff;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(168, 139, 250, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+
+        .form-group textarea {
+            border-radius: 24px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #a78bfa;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #6b7280;
+        }
+
+        /* Рейтинг звёздами */
+        .rating-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stars-input {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 0.3rem;
+        }
+
+        .stars-input input {
+            display: none;
+        }
+
+        .stars-input label {
+            font-size: 2rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .stars-input label:hover,
+        .stars-input label:hover ~ label,
+        .stars-input input:checked ~ label {
+            color: #fbbf24;
+        }
+
+        .review-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 10px -3px #6d28d9;
+        }
+
+        .review-submit:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 15px -4px #8b5cf6;
         }
 
         /* Футер */
@@ -288,6 +523,7 @@
             color: #4b5563;
             border-top: 1px solid rgba(168, 139, 250, 0.2);
             padding-top: 2rem;
+            animation: fadeIn 1s;
         }
 
         .footer p {
@@ -318,34 +554,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             z-index: 100;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
         .support-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(42, 171, 238, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(42, 171, 238, 0.4);
         }
 
         .support-button svg {
             width: 35px;
             height: 35px;
             fill: white;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
         }
 
-        /* Модальное окно заказа */
+        /* Модальное окно заказа (без изменений) */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -367,10 +602,10 @@
             max-width: 450px;
             width: 100%;
             padding: 2rem;
-            border: 1px solid rgba(168, 139, 250, 0.5);
-            box-shadow: 0 30px 40px -20px #000;
+            border: 1px solid rgba(168, 139, 250, 0.4);
+            box-shadow: 0 20px 40px -20px #000;
             transform: scale(0.9);
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -431,18 +666,18 @@
             font-weight: 600;
         }
 
-        .form-group {
+        .modal-form .form-group {
             margin-bottom: 1.2rem;
         }
 
-        .form-group label {
+        .modal-form label {
             display: block;
             margin-bottom: 0.4rem;
             color: #d1d5db;
             font-size: 0.95rem;
         }
 
-        .form-group input {
+        .modal-form input {
             width: 100%;
             padding: 0.9rem 1.2rem;
             background: rgba(255,255,255,0.05);
@@ -453,12 +688,12 @@
             transition: border 0.2s;
         }
 
-        .form-group input:focus {
+        .modal-form input:focus {
             outline: none;
             border-color: #a78bfa;
         }
 
-        .form-group input::placeholder {
+        .modal-form input::placeholder {
             color: #6b7280;
         }
 
@@ -475,11 +710,44 @@
             transition: transform 0.2s, box-shadow 0.2s;
             margin-top: 1rem;
             border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 10px -3px #6d28d9;
         }
 
         .modal-submit:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px -8px #8b5cf6;
+            transform: scale(1.01);
+            box-shadow: 0 6px 15px -4px #8b5cf6;
+        }
+
+        .modal-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Адаптация для мобильных */
@@ -492,6 +760,9 @@
             }
             .stats {
                 gap: 1rem;
+            }
+            .stat-item {
+                padding: 0.8rem 1rem;
             }
             .stat-number {
                 font-size: 1.5rem;
@@ -507,6 +778,9 @@
                 height: 28px;
             }
             .modal-container {
+                padding: 1.5rem;
+            }
+            .review-form {
                 padding: 1.5rem;
             }
         }
@@ -536,15 +810,15 @@
 
         <!-- Статистика -->
         <div class="stats">
-            <div class="stat-item">
+            <div class="stat-item" style="--i:1">
                 <span class="stat-number">5000+</span>
                 <span class="stat-label">Довольных клиентов</span>
             </div>
-            <div class="stat-item">
+            <div class="stat-item" style="--i:2">
                 <span class="stat-number">15+</span>
                 <span class="stat-label">Цифровых продуктов</span>
             </div>
-            <div class="stat-item">
+            <div class="stat-item" style="--i:3">
                 <span class="stat-number">24/7</span>
                 <span class="stat-label">Поддержка</span>
             </div>
@@ -554,7 +828,7 @@
         <h2 class="section-title">Популярные продукты</h2>
         <div class="products-grid">
             <!-- Telegram Premium -->
-            <div class="product-card" data-product="Telegram Premium" data-price="299 ₽/мес">
+            <div class="product-card" data-product="Telegram Premium" data-price="299 ₽/мес" style="--i:1">
                 <div class="product-icon">✈️</div>
                 <h3 class="product-name">Telegram Premium</h3>
                 <p class="product-description">Расширенные возможности мессенджера, 4 ГБ загрузка, стикеры</p>
@@ -563,7 +837,7 @@
             </div>
 
             <!-- Telegram Stars -->
-            <div class="product-card" data-product="Telegram Stars" data-price="170 ₽">
+            <div class="product-card" data-product="Telegram Stars" data-price="170 ₽" style="--i:2">
                 <div class="product-icon">⭐</div>
                 <h3 class="product-name">Telegram Stars</h3>
                 <p class="product-description">100 звезд для поддержки авторов и внутренних покупок</p>
@@ -572,7 +846,7 @@
             </div>
 
             <!-- AirPods Pro -->
-            <div class="product-card" data-product="AirPods Pro" data-price="1 799 ₽">
+            <div class="product-card" data-product="AirPods Pro" data-price="1 799 ₽" style="--i:3">
                 <span class="accessory-tag">Аксессуар</span>
                 <div class="product-icon">🎧</div>
                 <h3 class="product-name">AirPods Pro</h3>
@@ -582,7 +856,7 @@
             </div>
 
             <!-- AirPods Max -->
-            <div class="product-card" data-product="AirPods Max" data-price="7 999 ₽">
+            <div class="product-card" data-product="AirPods Max" data-price="7 999 ₽" style="--i:4">
                 <span class="accessory-tag">Аксессуар</span>
                 <div class="product-icon">🎧</div>
                 <h3 class="product-name">AirPods Max</h3>
@@ -596,7 +870,7 @@
         <h2 class="section-title">Все предложения</h2>
         <div class="products-grid">
             <!-- Telegram Premium -->
-            <div class="product-card" data-product="Telegram Premium" data-price="299 ₽/мес">
+            <div class="product-card" data-product="Telegram Premium" data-price="299 ₽/мес" style="--i:1">
                 <div class="product-icon">✈️</div>
                 <h3 class="product-name">Telegram Premium</h3>
                 <p class="product-description">Подписка: скорость, загрузка, стикеры</p>
@@ -605,7 +879,7 @@
             </div>
 
             <!-- Telegram Stars -->
-            <div class="product-card" data-product="Telegram Stars" data-price="170 ₽">
+            <div class="product-card" data-product="Telegram Stars" data-price="170 ₽" style="--i:2">
                 <div class="product-icon">⭐</div>
                 <h3 class="product-name">Telegram Stars</h3>
                 <p class="product-description">100 звезд для чатов и каналов</p>
@@ -614,7 +888,7 @@
             </div>
 
             <!-- AirPods Pro -->
-            <div class="product-card" data-product="AirPods Pro" data-price="1 799 ₽">
+            <div class="product-card" data-product="AirPods Pro" data-price="1 799 ₽" style="--i:3">
                 <span class="accessory-tag">Аксессуар</span>
                 <div class="product-icon">🎧</div>
                 <h3 class="product-name">AirPods Pro</h3>
@@ -624,7 +898,7 @@
             </div>
 
             <!-- AirPods Max -->
-            <div class="product-card" data-product="AirPods Max" data-price="7 999 ₽">
+            <div class="product-card" data-product="AirPods Max" data-price="7 999 ₽" style="--i:4">
                 <span class="accessory-tag">Аксессуар</span>
                 <div class="product-icon">🎧</div>
                 <h3 class="product-name">AirPods Max</h3>
@@ -634,7 +908,46 @@
             </div>
         </div>
 
-        <!-- Футер с обновлённым годом и ссылкой на политику конфиденциальности -->
+        <!-- ===== Интерактивный блок отзывов ===== -->
+        <div class="reviews-container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            
+            <!-- Список отзывов (динамически заполняется) -->
+            <div class="reviews-list" id="reviewsList">
+                <!-- Сюда будут добавляться карточки отзывов -->
+            </div>
+
+            <!-- Форма добавления отзыва -->
+            <div class="review-form">
+                <h3>Оставить отзыв</h3>
+                <form id="addReviewForm">
+                    <div class="form-group">
+                        <label for="reviewName">Ваше имя</label>
+                        <input type="text" id="reviewName" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-group rating-group">
+                        <label>Оценка</label>
+                        <div class="stars-input">
+                            <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+                            <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+                            <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+                            <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+                            <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reviewText">Текст отзыва</label>
+                        <textarea id="reviewText" placeholder="Поделитесь впечатлениями..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="review-submit">Добавить отзыв</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Футер -->
         <footer class="footer">
             <p>© 2026 MuhStore. Премиум цифровые продукты и аксессуары.</p>
             <p><a href="https://telegra.ph/Politika-konfidencialnosti-MuhStore-02-21-2" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a></p>
@@ -656,7 +969,7 @@
                 <button class="modal-close" id="modalClose">&times;</button>
             </div>
             <div class="modal-product" id="modalProductInfo"></div>
-            <form id="orderForm">
+            <form id="orderForm" class="modal-form">
                 <div class="form-group">
                     <label for="name">Ваше имя</label>
                     <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
@@ -688,7 +1001,7 @@
                 span.style.top = -10 + '%';
                 span.style.animationDuration = (Math.random() * 15 + 10) + 's';
                 span.style.animationDelay = (Math.random() * 5) + 's';
-                span.style.opacity = Math.random() * 0.3 + 0.1;
+                span.style.opacity = Math.random() * 0.2 + 0.05;
                 
                 decor.appendChild(span);
             }
@@ -711,13 +1024,95 @@
                 span.style.top = -20 + '%';
                 span.style.animationDuration = (Math.random() * 10 + 8) + 's';
                 span.style.animationDelay = (Math.random() * 5) + 's';
-                span.style.opacity = Math.random() * 0.5 + 0.3;
+                span.style.opacity = Math.random() * 0.3 + 0.1;
                 
                 snowContainer.appendChild(span);
             }
         }
 
-        // Модальное окно
+        // ===== Логика отзывов =====
+        const reviewsList = document.getElementById('reviewsList');
+        const reviewForm = document.getElementById('addReviewForm');
+        const reviewName = document.getElementById('reviewName');
+        const reviewText = document.getElementById('reviewText');
+        const ratingInputs = document.querySelectorAll('input[name="rating"]');
+
+        // Функция создания карточки отзыва
+        function createReviewCard(name, rating, text) {
+            const card = document.createElement('div');
+            card.className = 'review-card';
+
+            // Аватар (первая буква имени)
+            const avatar = document.createElement('div');
+            avatar.className = 'review-avatar';
+            avatar.textContent = name.charAt(0).toUpperCase();
+
+            // Заголовок с именем и звёздами
+            const authorDiv = document.createElement('div');
+            authorDiv.className = 'review-author';
+            const nameH4 = document.createElement('h4');
+            nameH4.textContent = name;
+            const ratingDiv = document.createElement('div');
+            ratingDiv.className = 'review-rating';
+            ratingDiv.textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+            authorDiv.appendChild(nameH4);
+            authorDiv.appendChild(ratingDiv);
+
+            const header = document.createElement('div');
+            header.className = 'review-header';
+            header.appendChild(avatar);
+            header.appendChild(authorDiv);
+
+            // Текст отзыва
+            const textP = document.createElement('div');
+            textP.className = 'review-text';
+            textP.textContent = text;
+
+            card.appendChild(header);
+            card.appendChild(textP);
+
+            return card;
+        }
+
+        // Обработчик отправки формы отзыва
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = reviewName.value.trim();
+            const text = reviewText.value.trim();
+            let rating = 0;
+            for (let input of ratingInputs) {
+                if (input.checked) {
+                    rating = parseInt(input.value);
+                    break;
+                }
+            }
+
+            if (!name || !text || rating === 0) {
+                alert('Пожалуйста, заполните все поля и поставьте оценку');
+                return;
+            }
+
+            // Создаём карточку и добавляем в начало списка
+            const newCard = createReviewCard(name, rating, text);
+            reviewsList.prepend(newCard); // свежие отзывы сверху
+
+            // Очищаем форму
+            reviewName.value = '';
+            reviewText.value = '';
+            for (let input of ratingInputs) {
+                input.checked = false;
+            }
+        });
+
+        // Можно добавить пару демо-отзывов для примера (но они уже ненастоящие? по желанию можно оставить пустым)
+        // Если хотите совсем без стартовых, оставьте список пустым.
+        // Для красоты добавим один приветственный (но это уже не ненастоящий, а как бы подсказка)
+        const welcomeCard = createReviewCard('MuhStore', 5, 'Спасибо, что выбираете нас! Будем рады вашему отзыву.');
+        reviewsList.appendChild(welcomeCard);
+
+        // ===== Модальное окно заказа =====
         const modalOverlay = document.getElementById('modalOverlay');
         const modalClose = document.getElementById('modalClose');
         const modalProductInfo = document.getElementById('modalProductInfo');
@@ -764,7 +1159,7 @@
             if (e.target === modalOverlay) closeModal();
         });
 
-        // Отправка формы
+        // Отправка формы заказа – исправлено для мобильных
         orderForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -780,8 +1175,10 @@
             const telegramUrl = `https://t.me/tjkm04?text=${message}`;
 
             closeModal();
-            window.open(telegramUrl, '_blank');
-            alert('Сейчас вы будете перенаправлены в Telegram для завершения заказа. Пожалуйста, отправьте сообщение.');
+
+            setTimeout(() => {
+                window.location.href = telegramUrl;
+            }, 150);
         });
 
         // Простая маска для телефона
